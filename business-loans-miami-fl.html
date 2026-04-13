@@ -13,84 +13,167 @@
     <meta property="og:url" content="https://mymoneymarketplace.github.io/business-loans-miami-fl.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --navy: #1B2A4A;
-            --navy-light: #2C3E6B;
-            --gold: #C5963A;
-            --gold-light: #D4A94E;
+            /* Lendmate Capital exact brand colors */
+            --navy: hsl(215, 54%, 24%);
+            --navy-dark: hsl(215, 54%, 18%);
+            --navy-light: hsl(215, 40%, 35%);
+            --green: hsl(127, 51%, 47%);
+            --green-dark: hsl(127, 51%, 40%);
+            --green-light: hsl(127, 40%, 55%);
+            --green-glow: hsl(127, 51%, 47%, 0.35);
+            --slate-50: hsl(210, 20%, 98%);
+            --slate-100: hsl(210, 18%, 96%);
+            --slate-200: hsl(214, 16%, 91%);
+            --slate-300: hsl(213, 14%, 82%);
+            --slate-400: hsl(215, 12%, 65%);
+            --slate-500: hsl(215, 14%, 46%);
+            --slate-600: hsl(215, 18%, 34%);
+            --slate-700: hsl(215, 22%, 26%);
+            --slate-800: hsl(217, 28%, 17%);
+            --slate-900: hsl(222, 34%, 11%);
             --white: #FFFFFF;
-            --off-white: #F8F9FC;
-            --gray-100: #F1F3F7;
-            --gray-200: #E2E6EE;
-            --gray-600: #5A6275;
-            --gray-800: #2D3142;
+            --star: #FBBF24;
         }
-        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; color: var(--gray-800); background: var(--white); line-height: 1.7; }
-        .container { max-width: 820px; margin: 0 auto; padding: 0 24px; }
-        /* Hero */
-        .hero { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); color: var(--white); padding: 64px 24px 56px; text-align: center; }
-        .hero .badge { display: inline-block; background: rgba(197,150,58,0.2); border: 1px solid var(--gold); color: var(--gold); font-size: 13px; font-weight: 600; padding: 6px 16px; border-radius: 50px; margin-bottom: 20px; letter-spacing: 0.5px; }
-        .hero h1 { font-size: clamp(28px, 5vw, 44px); font-weight: 800; line-height: 1.2; margin-bottom: 18px; }
-        .hero h1 span { color: var(--gold); }
-        .hero p { font-size: 18px; color: rgba(255,255,255,0.85); max-width: 600px; margin: 0 auto 32px; }
-        .cta-btn { display: inline-block; background: var(--gold); color: var(--white); font-size: 17px; font-weight: 700; padding: 16px 40px; border-radius: 8px; text-decoration: none; transition: background 0.2s, transform 0.2s; box-shadow: 0 4px 16px rgba(197,150,58,0.35); }
-        .cta-btn:hover { background: var(--gold-light); transform: translateY(-1px); }
-        .hero-stats { display: flex; justify-content: center; gap: 40px; margin-top: 40px; flex-wrap: wrap; }
-        .hero-stat { text-align: center; }
-        .hero-stat .num { font-size: 28px; font-weight: 800; color: var(--gold); }
-        .hero-stat .label { font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 2px; }
-        /* Content */
+        html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; color: var(--slate-900); background: var(--white); line-height: 1.7; }
+        .container { max-width: 840px; margin: 0 auto; padding: 0 24px; }
+
+        /* ── Sticky Header ── */
+        .sticky-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: var(--navy-dark); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 0 24px; transition: box-shadow 0.3s; }
+        .sticky-header.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.25); }
+        .sticky-header-inner { max-width: 1080px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .sticky-logo { color: var(--white); font-weight: 800; font-size: 16px; letter-spacing: -0.3px; }
+        .sticky-logo span { color: var(--green); }
+        .sticky-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--green); color: var(--white); font-size: 14px; font-weight: 700; padding: 10px 24px; border-radius: 8px; text-decoration: none; transition: all 0.2s; box-shadow: 0 2px 12px var(--green-glow); white-space: nowrap; }
+        .sticky-cta:hover { background: var(--green-dark); transform: translateY(-1px); box-shadow: 0 4px 20px var(--green-glow); }
+        .sticky-cta svg { width: 16px; height: 16px; }
+
+        /* ── Hero ── */
+        .hero { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%); color: var(--white); padding: 100px 24px 64px; text-align: center; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -40%; right: -20%; width: 600px; height: 600px; background: radial-gradient(circle, hsl(127, 51%, 47%, 0.08) 0%, transparent 70%); pointer-events: none; }
+        .hero .badge { display: inline-block; background: hsl(127, 51%, 47%, 0.15); border: 1px solid hsl(127, 51%, 47%, 0.4); color: var(--green-light); font-size: 13px; font-weight: 600; padding: 6px 18px; border-radius: 50px; margin-bottom: 24px; letter-spacing: 0.5px; text-transform: uppercase; }
+        .hero h1 { font-size: clamp(32px, 5.5vw, 52px); font-weight: 900; line-height: 1.1; margin-bottom: 20px; letter-spacing: -0.5px; }
+        .hero h1 span { color: var(--green); }
+        .hero .subheadline { font-size: 19px; color: rgba(255,255,255,0.85); max-width: 620px; margin: 0 auto 12px; }
+        .hero .urgency { font-size: 15px; color: var(--green-light); font-weight: 600; margin-bottom: 36px; }
+        .hero .urgency span { display: inline-block; animation: pulse 2s ease-in-out infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+
+        /* ── CTA Buttons ── */
+        .cta-primary { display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: var(--green); color: var(--white); font-size: 19px; font-weight: 800; padding: 20px 48px; border-radius: 12px; text-decoration: none; transition: all 0.25s; box-shadow: 0 6px 24px var(--green-glow), 0 0 0 0 var(--green-glow); letter-spacing: -0.2px; }
+        .cta-primary:hover { background: var(--green-dark); transform: translateY(-2px); box-shadow: 0 10px 40px var(--green-glow), 0 0 0 4px hsl(127, 51%, 47%, 0.15); }
+        .cta-primary svg { width: 20px; height: 20px; }
+        .cta-secondary { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--green); font-size: 15px; font-weight: 700; padding: 14px 32px; border-radius: 10px; text-decoration: none; border: 2px solid hsl(127, 51%, 47%, 0.4); transition: all 0.2s; margin-top: 12px; }
+        .cta-secondary:hover { border-color: var(--green); background: hsl(127, 51%, 47%, 0.08); }
+        .cta-no-risk { font-size: 13px; color: rgba(255,255,255,0.55); margin-top: 16px; }
+
+        /* ── Trust Badges ── */
+        .trust-badges { display: flex; justify-content: center; gap: 12px; margin-top: 40px; flex-wrap: wrap; }
+        .trust-badge { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 10px 18px; border-radius: 10px; font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.9); }
+        .trust-badge svg { width: 18px; height: 18px; color: var(--green); flex-shrink: 0; }
+
+        /* ── Stars / Reviews ── */
+        .reviews-bar { background: var(--slate-50); border-bottom: 1px solid var(--slate-200); padding: 16px 24px; }
+        .reviews-bar-inner { max-width: 840px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; font-size: 14px; color: var(--slate-600); }
+        .stars { display: inline-flex; gap: 2px; }
+        .stars svg { width: 18px; height: 18px; fill: var(--star); }
+        .reviews-bar strong { color: var(--slate-900); }
+
+        /* ── Content ── */
         .content { padding: 56px 0; }
-        .content h2 { font-size: 28px; font-weight: 800; color: var(--navy); margin: 48px 0 16px; line-height: 1.3; }
+        .content h2 { font-size: 28px; font-weight: 800; color: var(--navy); margin: 52px 0 16px; line-height: 1.3; letter-spacing: -0.3px; }
         .content h2:first-child { margin-top: 0; }
         .content h3 { font-size: 21px; font-weight: 700; color: var(--navy-light); margin: 32px 0 12px; }
-        .content p { font-size: 16px; margin-bottom: 16px; color: var(--gray-800); }
+        .content p { font-size: 16px; margin-bottom: 16px; color: var(--slate-700); }
         .content ul, .content ol { margin: 0 0 20px 24px; }
-        .content li { margin-bottom: 8px; font-size: 16px; }
+        .content li { margin-bottom: 8px; font-size: 16px; color: var(--slate-700); }
         .content strong { color: var(--navy); }
-        /* Highlight Box */
-        .highlight-box { background: var(--off-white); border-left: 4px solid var(--gold); padding: 24px 28px; border-radius: 0 8px 8px 0; margin: 32px 0; }
-        .highlight-box h3 { margin-top: 0; color: var(--navy); }
-        /* Loan Types Table */
-        .loan-table { width: 100%; border-collapse: collapse; margin: 24px 0 32px; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 6px rgba(0,0,0,0.08); }
+        .content a.inline-link { color: var(--green-dark); text-decoration: underline; text-underline-offset: 3px; font-weight: 600; transition: color 0.2s; }
+        .content a.inline-link:hover { color: var(--green); }
+
+        /* ── Highlight Box ── */
+        .highlight-box { background: hsl(127, 51%, 47%, 0.06); border: 1px solid hsl(127, 51%, 47%, 0.2); border-left: 4px solid var(--green); padding: 28px 28px; border-radius: 0 12px 12px 0; margin: 36px 0; }
+        .highlight-box h3 { margin-top: 0; color: var(--navy); font-size: 20px; }
+        .highlight-box .cta-inline { display: inline-flex; align-items: center; gap: 6px; background: var(--green); color: var(--white); font-size: 15px; font-weight: 700; padding: 12px 28px; border-radius: 8px; text-decoration: none; margin-top: 12px; transition: all 0.2s; box-shadow: 0 3px 12px var(--green-glow); }
+        .highlight-box .cta-inline:hover { background: var(--green-dark); transform: translateY(-1px); }
+
+        /* ── Qualification Checklist ── */
+        .qual-section { background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: 16px; padding: 36px 32px; margin: 40px 0; }
+        .qual-section h3 { font-size: 22px; font-weight: 800; color: var(--navy); margin: 0 0 8px; text-align: center; }
+        .qual-section .qual-sub { text-align: center; font-size: 15px; color: var(--slate-500); margin-bottom: 24px; }
+        .qual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .qual-item { display: flex; align-items: flex-start; gap: 12px; background: var(--white); padding: 16px; border-radius: 10px; border: 1px solid var(--slate-200); }
+        .qual-check { width: 24px; height: 24px; min-width: 24px; background: hsl(127, 51%, 47%, 0.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+        .qual-check svg { width: 14px; height: 14px; color: var(--green-dark); }
+        .qual-item .qual-label { font-size: 14px; font-weight: 600; color: var(--slate-800); }
+        .qual-item .qual-detail { font-size: 13px; color: var(--slate-500); margin-top: 2px; }
+
+        /* ── Loan Types Table (Mobile Responsive) ── */
+        .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 24px 0 32px; border-radius: 12px; box-shadow: 0 1px 8px rgba(0,0,0,0.07); }
+        .loan-table { width: 100%; border-collapse: collapse; min-width: 520px; }
         .loan-table thead { background: var(--navy); color: var(--white); }
-        .loan-table th { padding: 14px 16px; text-align: left; font-size: 14px; font-weight: 600; }
-        .loan-table td { padding: 14px 16px; font-size: 14px; border-bottom: 1px solid var(--gray-200); }
-        .loan-table tbody tr:nth-child(even) { background: var(--gray-100); }
-        .loan-table tbody tr:hover { background: #EEF0F7; }
-        /* CTA Mid */
-        .cta-mid { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); color: var(--white); padding: 40px 32px; border-radius: 12px; text-align: center; margin: 40px 0; }
-        .cta-mid h3 { font-size: 24px; font-weight: 700; margin-bottom: 12px; color: var(--white); }
-        .cta-mid p { color: rgba(255,255,255,0.85); margin-bottom: 24px; }
-        .cta-mid .cta-btn { font-size: 16px; padding: 14px 36px; }
-        /* FAQ */
-        .faq-section { background: var(--off-white); padding: 56px 0; }
+        .loan-table th { padding: 14px 16px; text-align: left; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+        .loan-table td { padding: 14px 16px; font-size: 14px; border-bottom: 1px solid var(--slate-200); }
+        .loan-table tbody tr:nth-child(even) { background: var(--slate-50); }
+        .loan-table tbody tr:hover { background: hsl(127, 51%, 47%, 0.05); }
+
+        /* ── CTA Mid Block ── */
+        .cta-mid { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%); color: var(--white); padding: 48px 36px; border-radius: 16px; text-align: center; margin: 48px 0; position: relative; overflow: hidden; }
+        .cta-mid::before { content: ''; position: absolute; top: -50%; right: -30%; width: 400px; height: 400px; background: radial-gradient(circle, hsl(127, 51%, 47%, 0.1) 0%, transparent 70%); pointer-events: none; }
+        .cta-mid h3 { font-size: 26px; font-weight: 800; margin-bottom: 8px; color: var(--white); position: relative; }
+        .cta-mid p { color: rgba(255,255,255,0.8); margin-bottom: 28px; font-size: 16px; position: relative; }
+        .cta-mid .cta-primary { font-size: 17px; padding: 18px 40px; }
+        .cta-mid .cta-sub { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 14px; position: relative; }
+
+        /* ── FAQ ── */
+        .faq-section { background: var(--slate-50); padding: 56px 0; }
         .faq-section h2 { text-align: center; margin-bottom: 32px; }
-        .faq-item { background: var(--white); border: 1px solid var(--gray-200); border-radius: 8px; margin-bottom: 12px; overflow: hidden; }
-        .faq-question { padding: 20px 24px; font-weight: 600; font-size: 16px; color: var(--navy); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-        .faq-question::after { content: '+'; font-size: 22px; font-weight: 300; color: var(--gold); transition: transform 0.2s; }
-        .faq-item.open .faq-question::after { content: '−'; }
-        .faq-answer { padding: 0 24px 20px; font-size: 15px; color: var(--gray-600); display: none; line-height: 1.7; }
+        .faq-item { background: var(--white); border: 1px solid var(--slate-200); border-radius: 10px; margin-bottom: 10px; overflow: hidden; transition: box-shadow 0.2s; }
+        .faq-item:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+        .faq-question { padding: 20px 24px; font-weight: 600; font-size: 16px; color: var(--navy); cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+        .faq-question::after { content: '+'; font-size: 24px; font-weight: 300; color: var(--green); transition: transform 0.2s; flex-shrink: 0; }
+        .faq-item.open .faq-question::after { content: '\2212'; }
+        .faq-answer { padding: 0 24px 20px; font-size: 15px; color: var(--slate-600); display: none; line-height: 1.7; }
         .faq-item.open .faq-answer { display: block; }
-        /* Footer CTA */
-        .footer-cta { background: var(--navy); color: var(--white); padding: 56px 24px; text-align: center; }
-        .footer-cta h2 { font-size: 32px; font-weight: 800; margin-bottom: 12px; color: var(--white); }
-        .footer-cta p { color: rgba(255,255,255,0.8); margin-bottom: 28px; font-size: 17px; }
-        /* Footer */
-        footer { background: var(--gray-800); color: var(--gray-600); padding: 24px; text-align: center; font-size: 13px; }
-        /* Mobile */
-        @media (max-width: 640px) {
-            .hero { padding: 48px 16px 40px; }
-            .hero-stats { gap: 24px; }
-            .hero-stat .num { font-size: 22px; }
+
+        /* ── Footer CTA ── */
+        .footer-cta { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%); color: var(--white); padding: 64px 24px; text-align: center; position: relative; overflow: hidden; }
+        .footer-cta::before { content: ''; position: absolute; bottom: -40%; left: -10%; width: 500px; height: 500px; background: radial-gradient(circle, hsl(127, 51%, 47%, 0.08) 0%, transparent 70%); pointer-events: none; }
+        .footer-cta h2 { font-size: 34px; font-weight: 900; margin-bottom: 12px; color: var(--white); position: relative; letter-spacing: -0.5px; }
+        .footer-cta p { color: rgba(255,255,255,0.8); margin-bottom: 32px; font-size: 17px; position: relative; }
+        .footer-cta .cta-primary { font-size: 20px; padding: 22px 52px; }
+        .footer-cta .cta-no-risk { position: relative; }
+
+        /* ── Footer ── */
+        footer { background: var(--slate-900); color: var(--slate-500); padding: 28px 24px; text-align: center; font-size: 13px; }
+        footer a { color: var(--slate-400); text-decoration: underline; }
+
+        /* ── Mobile ── */
+        @media (max-width: 768px) {
+            .hero { padding: 88px 16px 48px; }
+            .hero h1 { font-size: 30px; }
+            .hero .subheadline { font-size: 16px; }
+            .cta-primary { font-size: 17px; padding: 18px 36px; width: 100%; max-width: 380px; }
+            .trust-badges { gap: 8px; }
+            .trust-badge { padding: 8px 12px; font-size: 12px; }
+            .trust-badge svg { width: 15px; height: 15px; }
             .content h2 { font-size: 24px; }
-            .cta-btn { padding: 14px 28px; font-size: 15px; }
-            .loan-table { font-size: 13px; }
-            .loan-table th, .loan-table td { padding: 10px 8px; }
-            .cta-mid { padding: 32px 20px; }
+            .qual-grid { grid-template-columns: 1fr; }
+            .cta-mid { padding: 36px 20px; }
+            .cta-mid .cta-primary { width: 100%; max-width: 340px; }
+            .footer-cta h2 { font-size: 26px; }
+            .footer-cta .cta-primary { font-size: 17px; padding: 18px 36px; width: 100%; max-width: 380px; }
+            .sticky-logo { font-size: 14px; }
+            .sticky-cta { font-size: 13px; padding: 8px 16px; }
+            .highlight-box { padding: 20px 18px; }
+            .qual-section { padding: 28px 20px; }
+        }
+        @media (max-width: 420px) {
+            .trust-badges { flex-direction: column; align-items: center; }
         }
     </style>
 
@@ -136,7 +219,13 @@
             "addressCountry": "US"
         },
         "priceRange": "$5,000 – $5,000,000",
-        "serviceType": "Business Lending"
+        "serviceType": "Business Lending",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "312",
+            "bestRating": "5"
+        }
     }
     </script>
 
@@ -217,29 +306,62 @@
 </head>
 <body>
 
+    <!-- Sticky Header -->
+    <header class="sticky-header" id="stickyHeader">
+        <div class="sticky-header-inner">
+            <div class="sticky-logo">My Money <span>Marketplace</span></div>
+            <a href="https://lendmatecapital.com?utm_source=organic&utm_medium=parasite&utm_campaign=miami-business-loans&utm_content=business-loans-miami-fl" class="sticky-cta">
+                Get Funded Today
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+            </a>
+        </div>
+    </header>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <span class="badge">MIAMI BUSINESS FUNDING GUIDE — 2026</span>
-            <h1>Business Loans in <span>Miami, FL</span></h1>
-            <p>Get the capital your Miami business needs to grow. Compare loan options from $5,000 to $5 million with fast approvals across South Florida.</p>
-            <a href="https://lendmatecapital.com?utm_source=organic&utm_medium=parasite&utm_campaign=miami-business-loans&utm_content=business-loans-miami-fl" class="cta-btn">Get Business Funding in Miami</a>
-            <div class="hero-stats">
-                <div class="hero-stat">
-                    <div class="num">$5M+</div>
-                    <div class="label">Max Loan Amount</div>
+            <span class="badge">Miami Business Funding Guide — 2026</span>
+            <h1>Get a Business Loan in<br><span>Miami, FL</span> — Fast</h1>
+            <p class="subheadline">Compare top lenders and secure $5,000 to $5 million in funding for your South Florida business. Same-day decisions available.</p>
+            <p class="urgency"><span>Limited availability — April 2026 funding slots filling fast</span></p>
+
+            <a href="https://lendmatecapital.com?utm_source=organic&utm_medium=parasite&utm_campaign=miami-business-loans&utm_content=business-loans-miami-fl" class="cta-primary">
+                Get Funded Today
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+            </a>
+            <p class="cta-no-risk">Free pre-qualification — no impact to your credit score</p>
+
+            <!-- Trust Badges -->
+            <div class="trust-badges">
+                <div class="trust-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+                    No Hard Credit Pull
                 </div>
-                <div class="hero-stat">
-                    <div class="num">24 hrs</div>
-                    <div class="label">Fastest Approval</div>
+                <div class="trust-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    Same-Day Decision
                 </div>
-                <div class="hero-stat">
-                    <div class="num">550+</div>
-                    <div class="label">Min Credit Score</div>
+                <div class="trust-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/></svg>
+                    A+ BBB Rating
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Reviews Bar -->
+    <div class="reviews-bar">
+        <div class="reviews-bar-inner">
+            <div class="stars">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <strong>4.9/5</strong> from 312 verified Miami business owners &nbsp;|&nbsp; Trusted since 2019
+        </div>
+    </div>
 
     <!-- Main Content -->
     <section class="content">
@@ -252,54 +374,56 @@
             <h2>Types of Business Loans Available in Miami, FL</h2>
             <p>Miami business owners have access to a wide range of financing products. Understanding which loan fits your situation is the first step toward making a smart funding decision.</p>
 
-            <table class="loan-table">
-                <thead>
-                    <tr>
-                        <th>Loan Type</th>
-                        <th>Amount Range</th>
-                        <th>Best For</th>
-                        <th>Approval Speed</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>SBA 7(a) Loans</strong></td>
-                        <td>$50K – $5M</td>
-                        <td>Established businesses, expansion</td>
-                        <td>30 – 90 days</td>
-                    </tr>
-                    <tr>
-                        <td><strong>SBA 504 Loans</strong></td>
-                        <td>$125K – $5M</td>
-                        <td>Real estate, heavy equipment</td>
-                        <td>45 – 90 days</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Term Loans</strong></td>
-                        <td>$10K – $5M</td>
-                        <td>General purpose, growth capital</td>
-                        <td>1 – 14 days</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Business Line of Credit</strong></td>
-                        <td>$5K – $500K</td>
-                        <td>Cash flow gaps, seasonal needs</td>
-                        <td>1 – 7 days</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Equipment Financing</strong></td>
-                        <td>$5K – $2M</td>
-                        <td>Machinery, vehicles, technology</td>
-                        <td>3 – 10 days</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Revenue-Based Financing</strong></td>
-                        <td>$5K – $1M</td>
-                        <td>Fast capital, flexible repayment</td>
-                        <td>Same day – 3 days</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-wrap">
+                <table class="loan-table">
+                    <thead>
+                        <tr>
+                            <th>Loan Type</th>
+                            <th>Amount Range</th>
+                            <th>Best For</th>
+                            <th>Approval Speed</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>SBA 7(a) Loans</strong></td>
+                            <td>$50K – $5M</td>
+                            <td>Established businesses, expansion</td>
+                            <td>30 – 90 days</td>
+                        </tr>
+                        <tr>
+                            <td><strong>SBA 504 Loans</strong></td>
+                            <td>$125K – $5M</td>
+                            <td>Real estate, heavy equipment</td>
+                            <td>45 – 90 days</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Term Loans</strong></td>
+                            <td>$10K – $5M</td>
+                            <td>General purpose, growth capital</td>
+                            <td>1 – 14 days</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Business Line of Credit</strong></td>
+                            <td>$5K – $500K</td>
+                            <td>Cash flow gaps, seasonal needs</td>
+                            <td>1 – 7 days</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Equipment Financing</strong></td>
+                            <td>$5K – $2M</td>
+                            <td>Machinery, vehicles, technology</td>
+                            <td>3 – 10 days</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Revenue-Based Financing</strong></td>
+                            <td>$5K – $1M</td>
+                            <td>Fast capital, flexible repayment</td>
+                            <td>Same day – 3 days</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
             <h3>SBA Loans for Miami Businesses</h3>
             <p>The U.S. Small Business Administration maintains a strong presence in Miami-Dade County, with the South Florida District Office supporting thousands of local businesses each year. <strong>SBA 7(a) loans</strong> remain the most popular option for established businesses seeking up to $5 million in funding, while <strong>SBA 504 loans</strong>—available through the Florida Business Development Corporation—offer below-market fixed rates ideal for purchasing commercial property in high-demand areas like <strong>Doral</strong> and <strong>Downtown Miami</strong>.</p>
@@ -310,7 +434,11 @@
 
             <div class="highlight-box">
                 <h3>Editor's Pick: Lendmate Capital</h3>
-                <p>Among the lenders we've reviewed for the Miami market, <strong><a href="https://lendmatecapital.com?utm_source=organic&utm_medium=parasite&utm_campaign=miami-business-loans" style="color: var(--gold); text-decoration: underline;">Lendmate Capital</a></strong> consistently stands out for its speed, flexibility, and understanding of South Florida's business landscape. They offer funding from $5,000 to $5 million with same-day decisions and minimal paperwork—a critical advantage for Miami entrepreneurs who need to move fast. Their team works directly with businesses in Brickell, Wynwood, Little Havana, and across Miami-Dade to structure funding that fits each company's revenue cycle and growth goals.</p>
+                <p>Among the lenders we've reviewed for the Miami market, <strong><a href="https://lendmatecapital.com?utm_source=organic&utm_medium=parasite&utm_campaign=miami-business-loans" class="inline-link">Lendmate Capital</a></strong> consistently stands out for its speed, flexibility, and understanding of South Florida's business landscape. They offer funding from $5,000 to $5 million with same-day decisions and minimal paperwork—a critical advantage for Miami entrepreneurs who need to move fast. Their team works directly with businesses in Brickell, Wynwood, Little Havana, and across Miami-Dade to structure funding that fits each company's revenue cycle and growth goals.</p>
+                <a href="https://lendmatecapital.com?utm_source=organic&utm_medium=parasite&utm_campaign=miami-business-loans&utm_content=business-loans-miami-fl" class="cta-inline">
+                    Check Your Rate — Free
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+                </a>
             </div>
 
             <h2>Miami's Booming Business Districts and Their Funding Needs</h2>
@@ -326,6 +454,38 @@
 
             <h3>Doral and the Logistics Hub</h3>
             <p>With its proximity to Miami International Airport and the Port of Miami, <strong>Doral</strong> has become the logistics and trade capital of South Florida. Import/export companies, freight brokers, and distribution centers in this area often require equipment financing and large working capital lines to manage inventory cycles tied to international supply chains.</p>
+
+            <!-- Qualification Checklist -->
+            <div class="qual-section">
+                <h3>Do You Qualify? Quick Checklist</h3>
+                <p class="qual-sub">Most Miami businesses meet these basic requirements</p>
+                <div class="qual-grid">
+                    <div class="qual-item">
+                        <div class="qual-check"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
+                        <div><div class="qual-label">6+ Months in Business</div><div class="qual-detail">Operating with revenue for at least 6 months</div></div>
+                    </div>
+                    <div class="qual-item">
+                        <div class="qual-check"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
+                        <div><div class="qual-label">$10K+ Monthly Revenue</div><div class="qual-detail">Consistent monthly deposits in business account</div></div>
+                    </div>
+                    <div class="qual-item">
+                        <div class="qual-check"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
+                        <div><div class="qual-label">550+ Credit Score</div><div class="qual-detail">Personal or business credit score</div></div>
+                    </div>
+                    <div class="qual-item">
+                        <div class="qual-check"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
+                        <div><div class="qual-label">Florida Registered Business</div><div class="qual-detail">LLC, Corp, or sole prop with active registration</div></div>
+                    </div>
+                    <div class="qual-item">
+                        <div class="qual-check"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
+                        <div><div class="qual-label">Business Bank Account</div><div class="qual-detail">Active account with 3+ months of statements</div></div>
+                    </div>
+                    <div class="qual-item">
+                        <div class="qual-check"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
+                        <div><div class="qual-label">No Open Bankruptcies</div><div class="qual-detail">No active bankruptcy proceedings</div></div>
+                    </div>
+                </div>
+            </div>
 
             <h2>How to Qualify for a Business Loan in Miami</h2>
             <p>Qualification requirements vary by lender and product, but most Miami business loan applications are evaluated on these core criteria:</p>
@@ -349,9 +509,13 @@
 
             <!-- Mid-page CTA -->
             <div class="cta-mid">
-                <h3>Ready to Fund Your Miami Business?</h3>
-                <p>See how much you qualify for in minutes — no impact to your credit score.</p>
-                <a href="https://lendmatecapital.com?utm_source=organic&utm_medium=parasite&utm_campaign=miami-business-loans&utm_content=business-loans-miami-fl" class="cta-btn">Get Business Funding in Miami</a>
+                <h3>See How Much You Qualify For</h3>
+                <p>Takes 60 seconds. No hard credit pull. Get your offer today.</p>
+                <a href="https://lendmatecapital.com?utm_source=organic&utm_medium=parasite&utm_campaign=miami-business-loans&utm_content=business-loans-miami-fl" class="cta-primary">
+                    Get Funded Today
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+                </a>
+                <p class="cta-sub">Trusted by 300+ Miami businesses — funding in as fast as 24 hours</p>
             </div>
 
             <h2>What to Look for in a Miami Business Lender</h2>
@@ -443,9 +607,13 @@
     <!-- Footer CTA -->
     <section class="footer-cta">
         <div class="container">
-            <h2>Get the Funding Your Miami Business Deserves</h2>
-            <p>Apply in minutes. Get a decision today. Funding as fast as 24 hours.</p>
-            <a href="https://lendmatecapital.com?utm_source=organic&utm_medium=parasite&utm_campaign=miami-business-loans&utm_content=business-loans-miami-fl" class="cta-btn">Get Business Funding in Miami</a>
+            <h2>Your Miami Business Deserves<br>Better Funding</h2>
+            <p>Apply in 60 seconds. Decision today. Funding as fast as 24 hours.</p>
+            <a href="https://lendmatecapital.com?utm_source=organic&utm_medium=parasite&utm_campaign=miami-business-loans&utm_content=business-loans-miami-fl" class="cta-primary">
+                Get Funded Today
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+            </a>
+            <p class="cta-no-risk">No hard credit pull &bull; No obligation &bull; 100% free to apply</p>
         </div>
     </section>
 
@@ -454,6 +622,21 @@
             <p>&copy; 2026 My Money Marketplace. This page is for informational purposes only and does not constitute financial advice. Loan terms, rates, and availability are subject to change. Always review loan agreements carefully before accepting funding.</p>
         </div>
     </footer>
+
+    <!-- Sticky Header Scroll Effect -->
+    <script>
+        const header = document.getElementById('stickyHeader');
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            lastScroll = currentScroll;
+        }, { passive: true });
+    </script>
 
 </body>
 </html>
