@@ -1,0 +1,11 @@
+name = "mmm-lead-capture"
+main = "lead-capture-worker.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+ALLOWED_ORIGIN = "https://mymoneymarketplace.github.io"
+
+# Secrets (set with `wrangler secret put`, NOT committed here):
+#   RESEND_API_KEY
+#   ZAPIER_WEBHOOK_URL
+#   FROM_EMAIL
