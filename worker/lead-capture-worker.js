@@ -53,7 +53,14 @@ export default {
             city: leadInfo.city,
             referrerPage: data.referrerPage,
             utmCampaign: data.utmCampaign || '',
-            tags: leadInfo.tags,
+            tag1: leadInfo.tags[0] || '',
+            tag2: leadInfo.tags[1] || '',
+            tag3: leadInfo.tags[2] || '',
+            tagsString: leadInfo.tags.join(','),
+            primaryTag: leadInfo.leadType,
+            secondaryTag: leadInfo.specificNeed,
+            professionTag: leadInfo.profession || '',
+            cityTag: leadInfo.city || '',
             timestamp: new Date().toISOString()
           })
         })
